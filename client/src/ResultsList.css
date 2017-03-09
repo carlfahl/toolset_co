@@ -1,13 +1,11 @@
-.myTwitCard: {
+.myTwitCard {
   display: flex;
-  border-width: 2px;
-  border-style: solid;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .box {
-  font-size: 40px;
   text-align: center;
-  padding: 10px;
-  margin: 10px;
   width: calc(33.3333% - 20px);
 }

@@ -6,10 +6,12 @@ var ResultsList = React.createClass({
   render: function() {
     var followers = this.props.followers.users.map(function (item) {
       return (
-        <div key={item.id_str} className="myTwitCard" >
-          <div className="box"><img src={item.profile_image_url_https} alt="" /></div>
-          <div className="box"><h3>{item.name}</h3></div>
-          <div className="box"><Button>Follow</Button></div>
+        <div className='panel panel-default' key={item.id_str}>
+          <div className='panel-body myTwitCard'>
+            <div className='box'><img src={item.profile_image_url_https} alt="" /></div>
+            <div className='box'><h3>{item.name}</h3></div>
+            <div className='box'><Button bsStyle="primary">Follow</Button></div>
+          </div>
         </div>
       );
     });
@@ -21,7 +23,8 @@ var ResultsList = React.createClass({
         <Form>
           <FormControl type="text" placeholder="screen name" onChange={(event) => this.props.onChangeHandler(event.target.value)} />
         </Form>
-        <Button bsStyle="success" onClick={() => this.props.onClickHandler()}>Get Followers</Button>
+        <Button bsStyle="success" onClick={() => this.props.onClickHandler('followers')}>Get Followers</Button>
+        <Button bsStyle="success" onClick={() => this.props.onClickHandler('following')}>Get Following</Button>
         {followers}
       </div>
     );

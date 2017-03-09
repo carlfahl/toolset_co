@@ -11,11 +11,11 @@ var FollowersCont = React.createClass({
       }
     )
   },
-  getFollowersFromServer: function () {
+  getFollowersFromServer: function (method) {
     var self = this;
     if (this.state.screenName) {
       $.ajax({
-        url: '/tweets/followers/' + this.state.screenName,
+        url: '/tweets/' + method + '/' + this.state.screenName,
         method: 'GET'
       }).done(function (data) {
         self.setState({followers: data});
