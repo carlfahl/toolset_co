@@ -6,6 +6,7 @@
     "react-scripts": "0.9.4"
   },
   "dependencies": {
+    "auth0-lock": "^10.12.3",
     "jquery": "^3.1.1",
     "react": "^15.4.2",
     "react-bootstrap": "^0.30.8",
