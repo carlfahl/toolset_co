@@ -2,7 +2,7 @@ import React from 'react';
 import { Form, FormControl, Button, Panel, Jumbotron} from 'react-bootstrap';
 import './ResultsList.css';
 
-var ResultsList = React.createClass({
+var UnfollowList = React.createClass({
   render: function() {
     var self = this;
     var followers = this.props.followers.users.map(function (item) {
@@ -11,7 +11,7 @@ var ResultsList = React.createClass({
           <div className='panel-body myTwitCard'>
             <div className='box'><img src={item.profile_image_url_https} alt="" /></div>
             <div className='box'><h3>{item.name}</h3></div>
-            <div className='box'><Button bsStyle="primary" onClick={() => self.props.addFollower(item.screen_name)} >Follow</Button></div>
+            <div className='box'><Button bsStyle="primary" onClick={() => self.props.removeFollower(item.screen_name)} >Unfollow</Button></div>
           </div>
         </div>
       );
@@ -19,17 +19,12 @@ var ResultsList = React.createClass({
     return (
       <div>
         <Jumbotron>
-          <h1>Add Followers</h1>
+          <h1>Remove Followers</h1>
         </Jumbotron>
-        <Form>
-          <FormControl type="text" placeholder="screen name" onChange={(event) => this.props.onChangeHandler(event.target.value)} />
-        </Form>
-        <Button bsStyle="success" onClick={() => this.props.onClickHandler('followers')}>Get Followers</Button>
-        <Button bsStyle="success" onClick={() => this.props.onClickHandler('following')}>Get Following</Button>
         {followers}
       </div>
     );
   }
 });
 
-export default ResultsList;
+export default UnfollowList;

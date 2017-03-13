@@ -7,7 +7,7 @@ var FollowersCont = React.createClass({
     return (
       {
         followers: {users:[]},
-        screenName: null
+        screenName: null,
       }
     )
   },
@@ -23,6 +23,15 @@ var FollowersCont = React.createClass({
       });
     }
   },
+  addFollower: function (sname) {
+    $.ajax({
+      url: '/tweets/addFollower',
+      method: 'POST',
+      data: {sname: sname}
+    }).done(function (data) {
+      console.log(data);
+    });
+  },
   onChangeHandler: function (data) {
     this.setState({screenName: data});
     console.log(this.state.screenName);
@@ -30,7 +39,7 @@ var FollowersCont = React.createClass({
   render: function() {
     return (
       <div>
-        <ResultsList followers={this.state.followers} onChangeHandler={this.onChangeHandler} onClickHandler={this.getFollowersFromServer} />
+        <ResultsList followers={this.state.followers} onChangeHandler={this.onChangeHandler} onClickHandler={this.getFollowersFromServer} addFollower={this.addFollower} />
       </div>
     );
   }

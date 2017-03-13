@@ -16,6 +16,13 @@ Router.use(function (req, res, next) {
   next();
 });
 
+Router.route('/following')
+  .get(function (req, res) {
+    T.get('/friends/list', {}, function (err, data, response) {
+      res.json(data);
+    });
+  });
+
 Router.route('/followers/:sname')
   .get(function (req, res) {
     T.get('/followers/list', {screen_name: req.params.sname}, function (err, data, response) {
@@ -27,6 +34,28 @@ Router.route('/following/:sname')
   .get(function (req, res) {
     T.get('/friends/list', {screen_name: req.params.sname}, function (err, data, response) {
       res.json(data);
+    });
+  });
+
+Router.route('/addFollower')
+  .post(function (req, res) {
+    T.post('/friendships/create', {screen_name: req.body.sname, follow: true}, function (err, data, response) {
+      if (err) {
+        res.json({error: err});
+      } else {
+        res.json(data);
+      }
+    });
+  });
+
+Router.route('/removeFollower')
+  .post(function (req, res) {
+    T.post('/friendships/destroy', {screen_name: req.body.sname}, function (err, data, response) {
+      if (err) {
+        res.json({error: err});
+      } else {
+        res.json(data);
+      }
     });
   });
 
